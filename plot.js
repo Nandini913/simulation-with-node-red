@@ -5,8 +5,8 @@ for (let i = 0; i < 60; i++) {
 
 
 class plot {
-    constructor(points, svg, chartNumber) {
-        this.chartNumber = chartNumber
+    constructor(points, svg) {
+        this.chartNumber = svg.id
         this.svg = svg
         this.batchPoints = points;
         this.upperControlLimit = Math.max(...this.batchPoints)
@@ -43,7 +43,8 @@ class plot {
     }
 
     ticksLabel(sec = [], min = [], hours = []) {
-
+        console.log("svg ="+this.svg.id);
+        console.log("chart ="+this.chartNumber)
         //y-axis
         for (let i = 1; i <= this.yAxisCount; i++) {
             const yAxisNum = (this.upperControlLimit + this.rangeVariance) - (i - 1) * 1
@@ -192,17 +193,17 @@ const svg4 = document.getElementById('svg4');
 const svg5 = document.getElementById('svg5');
 
 
-const temperatureVoltagePoints = new plot(dummy.slice(-60), svg3, 3)
+const temperatureVoltagePoints = new plot(dummy.slice(-60), svg3)
 temperatureVoltagePoints.timeParameters(svg3);
 temperatureVoltagePoints.drawControlPlot();
 
 
-const avgVoltagePoints = new plot(dummy.slice(-60), svg4, 4)
+const avgVoltagePoints = new plot(dummy.slice(-60), svg4)
 avgVoltagePoints.timeParameters(svg4);
 avgVoltagePoints.drawControlPlot();
 
 
-const avgTemperaturePoints = new plot(dummy.slice(-60), svg5, 5)
+const avgTemperaturePoints = new plot(dummy.slice(-60), svg5)
 avgTemperaturePoints.timeParameters(svg5)
 avgTemperaturePoints.drawControlPlot();
 

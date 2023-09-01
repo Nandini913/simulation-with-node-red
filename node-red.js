@@ -45,8 +45,8 @@ onValue(voltageRef, (snapshot) => {
     }
 
     const averageVoltage = convertAverage(voltage, 18) //input per 10sec = 18 input/3mins
-    temperatureVoltage.plotPoints(voltage.reverse().slice(-60), "red")
-    voltageObj.plotPoints(averageVoltage, "red")
+    temperatureVoltagePoints.plotPoints(voltage.reverse().slice(-60), "red")
+    avgVoltagePoints.plotPoints(averageVoltage, "red")
 });
 
 const temperatureRef = query(ref(db, 'node-db/temperature'), limitToLast(1080));
@@ -57,6 +57,6 @@ onValue(temperatureRef, (snapshot) => {
         temperature.push(data[timeline]);
     }
     const averageTemperature = convertAverage(temperature, 18)
-    temperatureVoltage.plotPoints(temperature.reverse().slice(-60));
-    temperatureObj.plotPoints(averageTemperature);
+    temperatureVoltagePoints.plotPoints(temperature.reverse().slice(-60));
+    avgTemperaturePoints.plotPoints(averageTemperature);
 });
